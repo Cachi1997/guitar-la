@@ -1,0 +1,9 @@
+{
+    "colorize.languages": ["typescript", "javascript", "css", "scss"],
+    "files.associations": {
+        "*.js": "javascript",
+        "*.jsx": "javascriptreact",
+        "*.ts": "typescript",
+        "*.tsx": "typescriptreact"
+    }
+}
