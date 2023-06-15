@@ -19,7 +19,6 @@ export async function loader({params}){
 }
 
 export function meta({data}){
-  console.log('Entre')
   if(!data || Object.keys(data).length === 0){
     return(
       [
