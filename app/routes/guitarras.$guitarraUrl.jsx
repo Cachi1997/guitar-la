@@ -11,14 +11,16 @@ export async function loader({params}){
   if(guitarra.data.length === 0){
     throw new Response('',{
       status: 404,
-      statusText: 'Guitarra no encontrada'
+      statusText: 'Guitarra no encontrada',
+      data: {}
     })
   }
   return guitarra
 }
 
 export function meta({data}){
-  if(!data){
+  console.log('Entre')
+  if(!data || Object.keys(data).length === 0){
     return(
       [
         {title: 'GuitarLA - Guitarra no encontrada'},
