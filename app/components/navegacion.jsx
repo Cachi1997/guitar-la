@@ -16,13 +16,13 @@ function Navegacion() {
       >Nosotros</Link>
           
       <Link 
-        to="/tienda"
-        className={location.pathname === '/tienda' ? 'active' : ' '}
+        to="/guitarras"
+        className={location.pathname === '/guitarras' ? 'active' : ' '}
       >Tienda</Link>
           
       <Link 
-        to="/blog"
-        className={location.pathname === '/blog' ? 'active' : ' '}
+        to="/posts"
+        className={location.pathname === '/posts' ? 'active' : ' '}
       >Blog</Link>
     </nav>
   )
