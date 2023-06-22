@@ -1,3 +1,41 @@
+# Guitar-LA Remix
+
+Welcome to my project, this is a Guitar store App, with the pourpose of letting the client buy guitars, also courses and read blogs. Its my first React project using Remix Run so feel free to provide any feedback, i'll be open for tips and ideas to make a better App.
+The data (guitars, blogs and courses) was previously loaded on Strapi
+
+## ¿What is Strapi?
+
+Strapi is a Headless cms, which means, it allows the programmer to have a backend already done, so it can focus on the development of the frontend.
+
+## What you need for Strapi
+
+- Node 16+
+- SQLite 3, PostgreSQL + 10, MySQL 5.7.8+, MariaDB 10.2.7+. 
+
+Choose any of these database to store your data. Personally i chose PostgreSQL because i already have installed on my computer, but any other database works fine.
+
+## Installation guide
+
+From your terminal:
+
+```sh
+npx create-strapi-app@latest
+```
+
+Choose "Custom (manual settings)", follow all the steps and when it ask you for a database, you'll need to know the host, port, username and password of your chosen DB
+
+Once you finish completing the data of your database, it will ask you if you want to enable SSL connections, I recommend that you put no, since I had problems leaving it enabled
+
+Done! You have finished creating your strapi project
+
+To start your project:
+
+```sh
+npm run develop
+``` 
+
+- [For more info](https://docs.strapi.io/dev-docs/quick-start#_1-install-strapi-and-create-a-new-project)
+
 # Welcome to Remix!
 
 - [Remix Docs](https://remix.run/docs)
