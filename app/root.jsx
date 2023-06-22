@@ -1,16 +1,15 @@
+import { useState, useEffect } from 'react'
 import {
   Meta,
   Links,
-  Link,
   Outlet,
   Scripts,
-  LiveReload,
-  useRouteError,
-  isRouteErrorResponse
+  LiveReload
 } from '@remix-run/react'
 import styles from '~/styles/index.css'
 import Header from '~/components/header'
 import Footer from '~/components/footer'
+
 
 
 
@@ -51,9 +50,59 @@ export function links(){
 }
 
 export default function App(){
+  //Si este codigo es del navegador, agrega el localStorage, si no, no hagas nada. Si es del navegador devuelve el carrito
+  //almacenado en LS, si no, devuelve un arreglo vacio
+  const carritoLS = typeof window !== 'undefined' && JSON.parse(localStorage.getItem('carrito')) || [] 
+  const [carrito, setCarrito] = useState(carritoLS)
+
+  useEffect(() => {
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+  }, [carrito])
+
+  const agregarCarrito = (guitarra) => {
+    if(carrito.some(guitarraState => guitarraState.id === guitarra.id)){
+      //Iterar sobre el arreglo, e identificar el elemento duplicado
+      const carritoActualizado = carrito.map(guitarraState => {
+        if(guitarraState.id === guitarra.id){
+          //Reescribir la cantidad
+          guitarraState.cantidad = guitarra.cantidad
+        }
+        return guitarraState
+      })
+      //Añadir al carrito
+      setCarrito(carritoActualizado)
+
+    }else{
+      //Guitarra nueva, agrego al carrito
+      setCarrito([...carrito, guitarra])
+    }
+  }
+
+  const actualizarCantidad = guitarra => {
+    const carritoActualizado = carrito.map(guitarraState => {
+      if(guitarraState.id === guitarra.id){
+        guitarraState.cantidad = guitarra.cantidad
+      }
+      return guitarraState
+    })
+    setCarrito(carritoActualizado)//No es necesario el spread, ya que map devuelve un arreglo
+  }
+
+  const eliminarGuitarra = id => {
+    const carritoActualizado = carrito.filter( guitarraState => guitarraState.id !== id)
+    setCarrito(carritoActualizado)
+  }
+
   return(
     <Document>
-      <Outlet />
+      <Outlet 
+        context={{
+          agregarCarrito,
+          carrito,
+          actualizarCantidad,
+          eliminarGuitarra
+        }}
+      />
     </Document>
   )
 }
@@ -76,17 +125,3 @@ function Document({children}){
   )
 }
 
-/** Manejo de errores */
-
-export function ErrorBoundary(){
-  const error = useRouteError()
-
-  if(isRouteErrorResponse(error)){
-    return(
-      <Document>
-        <p className='error'>{error.status} {error.statusText}</p>
-        <Link className="error-enlace" to="/" >Tal vez quieras volver a la pagina principal</Link>
-      </Document>
-    )
-  }
-}
