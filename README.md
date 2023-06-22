@@ -1,6 +1,6 @@
 # Guitar-LA Remix
 
-Welcome to my project, this is a Guitar store App, with the pourpose of letting the client buy guitars, also courses and read blogs. Its my first React project using Remix Run so feel free to provide any feedback, i'll be open for tips and ideas to make a better App.
+Welcome to my project, this is a Guitar store App, with the pourpose of letting the client buy guitars, courses and read blogs. Its my first React project using Remix Run so feel free to provide any feedback, i'll be open for tips and ideas to make a better App.
 The data (guitars, blogs and courses) was previously loaded on Strapi
 
 ## ¿What is Strapi?
